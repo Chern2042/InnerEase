@@ -13,20 +13,21 @@ struct HomeButton: View{
     
     
     var body: some View{
-        HStack{
+        HStack(spacing: 10){
             Image(systemName: systemImage)
-                .font(.title2)
+                .font(.subheadline)
             Text(title)
-                .font(.headline)
+                .font(.subheadline)
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.blue.opacity(0.15))
-        .cornerRadius(12)
+        .padding(8)
+        .background(Color.blue.opacity(0.1))
+        .cornerRadius(10)
     }
 }
 
 struct HomeView: View {
+    @State private var quoteOfTheDay = ""
     var body: some View {
         NavigationView {
             ScrollView{
@@ -35,7 +36,19 @@ struct HomeView: View {
                     Text("Welcome to InnerEase")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        
+                    //Added an array of quotes to be displayed 
+                    let quotes = [
+                        "You are stronger than you think.",
+                        "Take it one day at a time.",
+                        "Progress, not perfection.",
+                        "Breathe in calm, breathe out stress.",
+                        "Your feelings are valid.",
+                        "Keep going—you’re doing your best.",
+                        "Healing is not linear."
+                    ]
+                    
+                 
+                    
                     // app moto
                     Text("Reaching our inner peace ")
                         .font(.headline)
@@ -43,21 +56,37 @@ struct HomeView: View {
                     // this will be charted on the calnedar page and progress for the home page
                     Text("How are you feeling today?")
                         .font(.headline)
-
-                    Divider()
+                    NavigationLink(destination: MoodTrackerView()) {
+                        HomeButton(title: "Mood Check-In", systemImage: "face.smiling")
+                    }
                     
-                    VStack(alignment: .leading, spacing: 4){
-                        Text("Words of the day")
-                            .font(.subheadline)
+                    Divider()
+                    // Home screen 3.0:
+                    // In this version I added an array of quotes that will randomily display on the screen. Along with that the option for a user to change the random quote
+                    //Goals for 4.0:
+                    //My goals for 4.0 is to add a progress widget and goals for the user to set for themselves. Also to clean up the overall look of the home screen 
+                    VStack(alignment: .leading, spacing: 8){
+                     Text("Quote Of The Day")
+                            .font(.headline)
                             .fontWeight(.semibold)
-                        //uplifing words that the user can open the app to
-                        // have these on notifications everyday
-                        Text("Resilience – The ability to bounce back from challenges.")
+                        
+                        Text(quoteOfTheDay)
                             .font(.footnote)
                             .italic()
+                            .multilineTextAlignment(.leading)
+                            .padding(.bottom,4)
+                        
+                        Button("New quote"){
+                            quoteOfTheDay = quotes.randomElement() ?? ""
+                        }
+                        .font(.caption)
+                        .foregroundColor(.blue)
                     }
-                
-            }
+                    .onAppear{
+                        quoteOfTheDay = quotes.randomElement() ?? ""
+                    }
+                    
+                }
                 // overall mood progress chart and hype up user for the progress their mental health
                 // placeholder
                 VStack(alignment: .leading, spacing: 4){
@@ -90,6 +119,7 @@ struct HomeView: View {
                 }
 
                 Spacer()
+                
             }
             .padding()
         }
