@@ -62,7 +62,7 @@ No CoreData, no internet connection required, and no data ever leaves the device
 ## 📦 Getting Started
 
 1. Clone or download the repository
-2. Download and open Inner Ease. zip in Xcode
+2. Download and open Inner Ease 2. zip in Xcode
 3. Run the app on the simulator or device
 
 > No CocoaPods or external libraries required
