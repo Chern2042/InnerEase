@@ -78,4 +78,4 @@ Inspired by the need for accessible, private mental wellness tools.
 
 ## 🔒 License
 
-This project is open for learning and portfolio purposes. Contact chern184@rangers.uwp.edu for any distribution or collaboration 
+This project is open for learning and portfolio purposes. Contact herna184@rangers.uwp.edu for any distribution or collaboration 
